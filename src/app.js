@@ -9,10 +9,10 @@ app.use(cors({
     credentials:true
 }))
 
-app.use(express.json({limit:"16kb"}))
-app.use(express.urlencoded({extended : true, limit:"16kb"}))
-app.use(express.static("public"))
-app.use(cookieParser())
+app.use(express.json({limit:"16kb"})) //json files (form)
+app.use(express.urlencoded({extended : true, limit:"16kb"})) //url data
+app.use(express.static("public")) //files and folders access
+app.use(cookieParser()) //accept and send cookies
 
 
 
