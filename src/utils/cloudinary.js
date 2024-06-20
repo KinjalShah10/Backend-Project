@@ -1,8 +1,10 @@
 import {v2 as cloudinary} from "cloudinary"
+//Cloudinary is a cloud-based service that provides an API for managing media assets, such as images and videos.
+
 import fs from "fs"
+//The fs module provides an API for interacting with the file system, allowing you to read, write, delete, and manipulate files and directories.
 
-import { v2 as cloudinary } from 'cloudinary';
-
+//code from cloudinary itself..........
     cloudinary.config({ 
         cloud_name:process.env.CLOUDINARY_CLOUD_NAME, 
         api_key:process.env.CLOUDINARY_API_KEY, 
@@ -13,6 +15,10 @@ const uploadOnCloudinary = async (localFilePath) => {
     try {
        if (!localFilePath) return null
        //upload the file on the cloudinary
+
+
+    //It uploads the file specified by localFilePath to Cloudinary.
+    //"auto" specifies that Cloudinary should automatically determine the type of resource being uploaded
        const response = await cloudinary.uploader.upload(localFilePath, {
         resource_type:"auto"
        })
@@ -25,4 +31,4 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-export {uploadOnCloudinaryn}
+export {uploadOnCloudinary}

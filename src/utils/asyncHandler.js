@@ -1,6 +1,7 @@
 
-const asyncHandler = (requestHandler) => {
-    return (req, res, next) => {
+const asyncHandler = (requestHandler) => { // Higher order function
+    return (req, res, next) => 
+    {
         Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err))
     }
 }
@@ -10,8 +11,8 @@ export { asyncHandler }
 
 
 
-//Higher Order Function
-// const asyncHandler = () => {}
+//Higher Order Function => Takes one or more functions as arguments.Returns a function as its result.
+// const asyncHandler = () => {()}
 // const asyncHandler = (func) => () => {}
 // const asyncHandler = (func) => async () => {}
 
