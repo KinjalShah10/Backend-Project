@@ -19,7 +19,7 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
     },
-    fullname: {
+    fullName: {
       type: String,
       required: true,
       trim: true,
@@ -47,10 +47,44 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+//when the data is going to saved before that something is done for that pre hooks are used.
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = bcrypt.hash(this.password, 10); //bcrypt used to hash the password
   next();
 });
 
+userSchema.methods.isPasswordCorrect = async function(password){
+ return await bcrypt.compare(password,this.password)
+}
+
+userSchema.methods.generateAccessToken = function(){
+  return  jwt.sign({
+    _id: this._id,
+    email: this.email,
+    username: this.username,
+    fullname:this.fullName
+  },
+process.env.ACCESS_TOKEN_SECRET,
+{
+  
+  expiresIn:process.env.ACCESS_TOKEN_EXPIRY
+})
+}
+userSchema.methods.generateRefrehToken = function(){
+  return  jwt.sign({
+    _id: this._id,
+    email: this.email,
+    username: this.username,
+    fullname:this.fullName
+  },
+process.env.REFRESH_TOKEN_SECRET,
+{
+  
+  expiresIn:process.env.REFRESH_TOKEN_EXPIRY
+})
+}
+
 export const User = mongoose.model("User", userSchema);
+
+//JWT is a bearer token means jo bhi yeh token bhejega usko mei sahi mna lunga works as a key for the lock.
