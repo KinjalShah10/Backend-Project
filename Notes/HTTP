@@ -1,0 +1,10 @@
+Hyper text transfer protocol: how to transfer the text its use for that.
+
+the main diff bet hhtp and https :
+
+1 hhtp: the text is transfered simply means abcd => abcd.
+2 hhtps: here one layer is done and the text is encrypted and then transfered.
+
+URL : Uniform resource locator
+URI : Identifer
+URN : name
