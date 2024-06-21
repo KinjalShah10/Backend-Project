@@ -56,7 +56,7 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next(); // next is called tp pass control to next middleware
   //field has been modified. If the password has not been modified, it means there's no need to hash it again.
 
-  this.password = bcrypt.hash(this.password, 10); //bcrypt used to hash the password
+  this.password = await bcrypt.hash(this.password, 10); //bcrypt used to hash the password
   next();
 });
 
