@@ -18,12 +18,16 @@ app.use(express.urlencoded({extended : true, limit:"16kb"})) //url data
 app.use(express.static("public")) //files and folders access
 app.use(cookieParser()) //accept and send cookies
 
+//routes import
+
+import userRouter from "./routes/user.routes.js"
+
+//routes Declaration
+app.use("/api/v1/users",userRouter)
+
+// url : http://localhost:8000/api/v1/users/register
 
 
 
 
-
-
-
-
-export default app
+export default app;
