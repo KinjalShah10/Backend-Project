@@ -66,6 +66,9 @@ userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// Access token have short expired time while refresh token have more expired time.
+// when we want to user authenticate we mostly use access token for login but if our login time got expired then we need to re-enter thr password here come the refresh token it is provided to user as well as saved in database,  using that it can be login again.
+
 userSchema.methods.generateAccessToken = function () { // generates the access token 
   return jwt.sign(
     //generates the signed tokens
