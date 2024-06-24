@@ -33,6 +33,7 @@ const userSchema = new Schema(
     },
     coverImage: {
       type: String, //cloudinary url=aws which stores images and videos
+      //required:true,
     },
     watchHistory: {
       type: Schema.Types.ObjectId,
